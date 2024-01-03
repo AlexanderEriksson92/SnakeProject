@@ -7,8 +7,7 @@
         mc:Ignorable="d"
         Title="SnakeWindow" Height="450" Width="800"
         Background="{StaticResource BackgroundColor}"
-        Foreground="{StaticResource GridBackgroundColor}"
-        >
+        Foreground="{StaticResource GridBackgroundColor}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -16,9 +15,19 @@
         </Grid.RowDefinitions>
         <TextBlock x:Name="TextScore"
                    HorizontalAlignment="Center"
-                     VerticalAlignment="Center"
-                        FontSize="30"
-                        Text="Score: 0"
-                           />
+                   VerticalAlignment="Center"
+                   FontSize="30"
+                   Text="Score: 0"/>
+        <Border x:Name="GameBorder" Grid.Row="1"
+                BorderBrush="{StaticResource GridColor}"
+                BorderThickness="2"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+            <UniformGrid x:Name="GameGrid"
+                         Columns="20"
+                         Rows="20"
+                         Background="{StaticResource GridBackgroundColor}">
+            </UniformGrid>
+        </Border>
     </Grid>
 </Window>
