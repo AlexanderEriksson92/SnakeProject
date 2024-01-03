@@ -2,12 +2,12 @@
 
 namespace SnakeProjekt
 {
-    class Posistion
+    class Position
     {
         public int X { get;}
 		public int Y { get;}
 
-		public Posistion(int x, int y)
+		public Position(int x, int y)
         {
 			X = x;
 			Y = y;
@@ -15,7 +15,7 @@ namespace SnakeProjekt
 
 		public override bool Equals(object obj)
 		{
-			return obj is Posistion posistion &&
+			return obj is Position posistion &&
 				   X == posistion.X &&
 				   Y == posistion.Y;
 		}
@@ -25,12 +25,12 @@ namespace SnakeProjekt
 			return HashCode.Combine(X, Y);
 		}
 
-		public static bool operator ==(Posistion left, Posistion right)
+		public static bool operator ==(Position left, Position right)
 		{
-			return EqualityComparer<Posistion>.Default.Equals(left, right);
+			return EqualityComparer<Position>.Default.Equals(left, right);
 		}
 
-		public static bool operator !=(Posistion left, Posistion right)
+		public static bool operator !=(Position left, Position right)
 		{
 			return !(left == right);
 		}	

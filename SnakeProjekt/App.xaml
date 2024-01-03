@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:SnakeProjekt"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <SolidColorBrush x:Key="BackgroundColor">#232323</SolidColorBrush>
+        <SolidColorBrush x:Key="GridBackgroundColor">#F2FFBF</SolidColorBrush>
+        <SolidColorBrush x:Key="GridColor">#232323</SolidColorBrush>
     </Application.Resources>
 </Application>
