@@ -2,6 +2,7 @@
 
 using System.Runtime.CompilerServices;
 using System.Windows.Controls.Primitives;
+using System.Diagnostics;
 
 namespace SnakeProjekt
 {
@@ -25,6 +26,7 @@ namespace SnakeProjekt
                 Rows = rows;
                 Cols = cols;
                 grid = new GridValue[rows, cols];
+    
                 Dir = Direction.Right;
                 Score = 0;
                 GameOver = 0;
@@ -62,14 +64,13 @@ namespace SnakeProjekt
             {
                 List<Position> emptyPositions = GetEmptyPositions(this).ToList();
                 Random random = new Random();
-                int index = random.Next(emptyPositions.Count);
-                Position pos = emptyPositions[index];
+                Position pos = emptyPositions[random.Next(emptyPositions.Count)];
                 grid[pos.X, pos.Y] = GridValue.Food;
-
-            }
+				Debug.WriteLine($"Mat placerad på position ({pos.X}, {pos.Y})");
+			}
             public Position HeadPosition()
             {
-                // Returnerar ormens huvudposition
+				// Returnerar ormens huvudposition
                 return snakePositions.First.Value;
             }
             public Position TailPosition()
@@ -114,12 +115,12 @@ namespace SnakeProjekt
                 {
 					return GridValue.Wall;
 				}
-				GridValue value = grid[newHeadPos.X, newHeadPos.Y];
-				if (value == GridValue.Snake)
+				
+				if (newHeadPos == TailPosition())
                 {
-					return GridValue.Snake;
+					return GridValue.Empty;
 				}
-				return GridValue.Empty;
+				return grid[newHeadPos.X, newHeadPos.Y];
 			}
             public void Move()
             {
@@ -127,20 +128,31 @@ namespace SnakeProjekt
                 Position headPos = HeadPosition();
                 Position newHeadPos = new Position(headPos.X + Dir.X, headPos.Y + Dir.Y);
                 GridValue value = GonDie(newHeadPos);
-                if (value == GridValue.Empty)
-                {
-					AddHead(newHeadPos);
-					RemoveTail();
-				}
-				else if (value == GridValue.Food)
-                {
-					AddHead(newHeadPos);
-					Score++;
-                    Food();
-				}
-				else
+                if (value == GridValue.Wall)
                 {
 					GameOver = 1;
+				}
+				else if (value == GridValue.Empty)
+                {
+					
+                    RemoveTail();
+					AddHead(newHeadPos);
+					
+					
+				}
+				else if (value == GridValue.Snake)
+                {
+
+					GameOver = 1;
+
+				}
+                else if (value == GridValue.Food)
+                {
+                    Debug.WriteLine("Ormen äter mat");
+                    AddHead(newHeadPos);
+					Score++;
+					Food();
+					Debug.WriteLine("Ny mat placerad");
 				}
             }
         }

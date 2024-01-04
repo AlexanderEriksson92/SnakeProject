@@ -6,6 +6,6 @@
     <Application.Resources>
         <SolidColorBrush x:Key="BackgroundColor">#232323</SolidColorBrush>
         <SolidColorBrush x:Key="GridBackgroundColor">#F2FFBF</SolidColorBrush>
-        <SolidColorBrush x:Key="GridColor">#232323</SolidColorBrush>
+        <SolidColorBrush x:Key="GridColor">#232390</SolidColorBrush>
     </Application.Resources>
 </Application>

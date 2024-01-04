@@ -8,6 +8,7 @@
         Title="SnakeWindow" Height="450" Width="800"
         Background="{StaticResource BackgroundColor}"
         Foreground="{StaticResource GridBackgroundColor}"
+        WindowStartupLocation="CenterScreen"
         Loaded="Window_Loaded"
         KeyDown="Window_KeyDown">
     <Grid>
@@ -29,7 +30,7 @@
             <UniformGrid x:Name="GameGrid"
                          Columns="20"
                          Rows="20"
-                         Background="{StaticResource GridBackgroundColor}"
+                         Background="{StaticResource BackgroundColor}"
                          SnapsToDevicePixels="True"
                          RenderOptions.BitmapScalingMode="HighQuality">
             </UniformGrid>

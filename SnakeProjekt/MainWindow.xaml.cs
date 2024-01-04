@@ -1,4 +1,5 @@
 ﻿using SnakeProjekt;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,6 +11,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static SnakeProjekt.StateOfGame;
+
+
+
 
 namespace SnakeProjekt
 {
@@ -28,6 +32,7 @@ namespace SnakeProjekt
 
 		public MainWindow()
 		{
+			Debug.WriteLine("MainWindow startar");
 			InitializeComponent();
 			GridImages = SetupGrid();
 			gameState = new GameState(rows, cols);
@@ -43,7 +48,6 @@ namespace SnakeProjekt
 		}
 		private async void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-
 			Draw();
 			await Loop();
 		}
@@ -51,6 +55,7 @@ namespace SnakeProjekt
 		{
 			if (gameState.GameOver != 0)
 			{
+
 				return;
 			}
 			switch (e.Key)
