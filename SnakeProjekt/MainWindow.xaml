@@ -7,7 +7,9 @@
         mc:Ignorable="d"
         Title="SnakeWindow" Height="450" Width="800"
         Background="{StaticResource BackgroundColor}"
-        Foreground="{StaticResource GridBackgroundColor}">
+        Foreground="{StaticResource GridBackgroundColor}"
+        Loaded="Window_Loaded"
+        KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -22,11 +24,14 @@
                 BorderBrush="{StaticResource GridColor}"
                 BorderThickness="2"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center">
+                VerticalAlignment="Center"
+                RenderOptions.EdgeMode="Aliased">
             <UniformGrid x:Name="GameGrid"
                          Columns="20"
                          Rows="20"
-                         Background="{StaticResource GridBackgroundColor}">
+                         Background="{StaticResource GridBackgroundColor}"
+                         SnapsToDevicePixels="True"
+                         RenderOptions.BitmapScalingMode="HighQuality">
             </UniformGrid>
         </Border>
     </Grid>
