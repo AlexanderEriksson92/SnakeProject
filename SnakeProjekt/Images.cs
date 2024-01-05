@@ -8,8 +8,8 @@ namespace SnakeProjekt
 	{
 		public static readonly ImageSource SnakeHead = LoadImage("SnakeHead.png");
 		public static readonly ImageSource SnakeBody = LoadImage("SnakeBody.png");
-		public static readonly ImageSource SnakeDeadHead = LoadImage("SnakeHeadDead.png");
-		public static readonly ImageSource SnakeDeadBody = LoadImage("SnakeBodyDead.png");
+		public static readonly ImageSource SnakeHeadDead = LoadImage("SnakeHeadDead.png");
+		public static readonly ImageSource SnakeBodyDead = LoadImage("SnakeBodyDead.png");
 		public static readonly ImageSource Food = LoadImage("Food.png");
 		public static readonly ImageSource Empty = LoadImage("EmptySpace.png");
 

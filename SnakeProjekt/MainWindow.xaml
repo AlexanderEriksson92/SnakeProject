@@ -9,7 +9,7 @@
         Background="{StaticResource BackgroundColor}"
         Foreground="{StaticResource GridBackgroundColor}"
         WindowStartupLocation="CenterScreen"
-        Loaded="Window_Loaded"
+        PreviewKeyDown="Window_PreviewKeyDown"
         KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
@@ -20,7 +20,11 @@
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    FontSize="30"
-                   Text="Score: 0"/>
+                   MaxHeight="420"
+                   MaxWidth="760"
+                   TextWrapping="Wrap"
+                   Text="Score: 0"
+                   Margin="10"/>
         <Border x:Name="GameBorder" Grid.Row="1"
                 BorderBrush="{StaticResource GridColor}"
                 BorderThickness="2"
@@ -34,6 +38,33 @@
                          SnapsToDevicePixels="True"
                          RenderOptions.BitmapScalingMode="HighQuality">
             </UniformGrid>
+        </Border>
+        <Border x:Name="Overlay"
+                Grid.Row="1"
+                Background="{StaticResource BackgroundColor}"
+                Width="{Binding Path=ActualWidth, ElementName=GameGrid}"
+                Height="{Binding Path=ActualHeight, ElementName=GameGrid}"
+                Margin="{Binding Path=Margin, ElementName=GameGrid}"
+                RenderOptions.EdgeMode="Aliased">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock x:Name="OverLayText"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          FontSize="24"
+                          Text="Press space to start"
+                           TextAlignment="Center"
+                       TextWrapping="Wrap"/>
+
+                <Button x:Name="StartButton"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="30"
+                    Margin="20"
+                    Padding="10"
+                    Content="Start"
+                    Click="StartButton_Click"
+                    />
+            </StackPanel>
         </Border>
     </Grid>
 </Window>

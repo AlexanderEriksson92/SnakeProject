@@ -18,6 +18,8 @@ namespace SnakeProjekt
             public int Score { get; set; }
             public int GameOver { get; private set; }
 
+            public string TextScore { get; set; }
+
             private readonly LinkedList<Position> snakePositions = new LinkedList<Position>();
 
 
@@ -26,8 +28,7 @@ namespace SnakeProjekt
                 Rows = rows;
                 Cols = cols;
                 grid = new GridValue[rows, cols];
-    
-                Dir = Direction.Right;
+							Dir = Direction.Right;
                 Score = 0;
                 GameOver = 0;
                 AddSnake();
@@ -89,6 +90,7 @@ namespace SnakeProjekt
 				snakePositions.AddFirst(pos);
                 grid[pos.X, pos.Y] = GridValue.Snake;
 			}
+       
             private void RemoveTail()
             {
 				// Tar bort ormens svansposition 
@@ -134,17 +136,12 @@ namespace SnakeProjekt
 				}
 				else if (value == GridValue.Empty)
                 {
-					
                     RemoveTail();
 					AddHead(newHeadPos);
-					
-					
 				}
 				else if (value == GridValue.Snake)
                 {
-
 					GameOver = 1;
-
 				}
                 else if (value == GridValue.Food)
                 {
