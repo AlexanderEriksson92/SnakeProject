@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SnakeProjekt"
         mc:Ignorable="d"
-        Title="SnakeWindow" Height="450" Width="800"
+        Title="SnakeWindow" Height="650" Width="950" MinHeight="350" MinWidth="500"
         Background="{StaticResource BackgroundColor}"
         Foreground="{StaticResource GridBackgroundColor}"
         WindowStartupLocation="CenterScreen"
@@ -13,10 +13,17 @@
         KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
         <TextBlock x:Name="TextScore"
+                   Grid.Row="0"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    FontSize="30"
@@ -40,30 +47,76 @@
             </UniformGrid>
         </Border>
         <Border x:Name="Overlay"
-                Grid.Row="1"
+                Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
                 Background="{StaticResource BackgroundColor}"
-                Width="{Binding Path=ActualWidth, ElementName=GameGrid}"
-                Height="{Binding Path=ActualHeight, ElementName=GameGrid}"
-                Margin="{Binding Path=Margin, ElementName=GameGrid}"
-                RenderOptions.EdgeMode="Aliased">
+                Visibility="Visible">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock 
+                           x:Name="HighscoreText"
+                           Text="Highscores"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Foreground="{StaticResource HighScoreText}"
+                           FontFamily="{StaticResource AtariFont}"
+                           FontSize="30"
+                           Margin="10"
+                           Visibility="Collapsed"/>
+                <ListBox x:Name="HighscoreList"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         FontSize="14"
+                         MinWidth="300"
+                         MinHeight="300"
+                         Visibility="Collapsed"
+                            FontFamily="{StaticResource AtariFont}"
+                          Background="{StaticResource HighScoreTable}"
+         Foreground="{StaticResource HighScoreText}"
+                         >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Name: " Margin="5"></TextBlock>
+                                <TextBlock Text="{Binding Name}" Margin="5"/>
+                                <TextBlock Text="Score: " Margin="5"></TextBlock>
+                                <TextBlock Text="{Binding Score}" Margin="5"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
                 <TextBlock x:Name="OverLayText"
                           HorizontalAlignment="Center"
                           VerticalAlignment="Center"
-                          FontSize="24"
-                          Text="Press space to start"
-                           TextAlignment="Center"
-                       TextWrapping="Wrap"/>
+                          FontSize="30"
+                          Margin="20"
+                          Text="Press space to start"/>
 
                 <Button x:Name="StartButton"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontSize="30"
-                    Margin="20"
-                    Padding="10"
-                    Content="Start"
-                    Click="StartButton_Click"
-                    />
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="30"
+                        Content="Start"
+                        Padding="20 10"
+                        Margin="20"
+                        Visibility="Visible"
+                        Click="StartButton_Click"/>
+
+                <TextBox x:Name="NameInputTextBox"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         Visibility="Collapsed"
+                         TextAlignment="Center"
+                         Width="300"
+                         Padding="10"/>
+                       
+                <Button x:Name="HighscoreButton"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="30"
+                        Padding="20 10"
+                        Margin="20"
+                        Content="Submit"
+                        Visibility="Collapsed"
+                        Click="SaveHighscoreButton"/>
             </StackPanel>
         </Border>
     </Grid>

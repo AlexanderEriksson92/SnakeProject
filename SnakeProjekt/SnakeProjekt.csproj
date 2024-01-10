@@ -11,6 +11,8 @@
   <ItemGroup>
     <None Remove="Assets\EmptySpace.png" />
     <None Remove="Assets\Food.png" />
+    <None Remove="Assets\SF Atarian System Extended Bold.ttf" />
+    <None Remove="Assets\sf-atarian-system\SF Atarian System Bold.ttf" />
     <None Remove="Assets\SnakeBody.png" />
     <None Remove="Assets\SnakeBodyDead.png" />
     <None Remove="Assets\SnakeHead.png" />
@@ -20,6 +22,7 @@
   <ItemGroup>
     <Resource Include="Assets\EmptySpace.png" />
     <Resource Include="Assets\Food.png" />
+    <Resource Include="Assets\SF Atarian System Extended Bold.ttf" />
     <Resource Include="Assets\SnakeBody.png" />
     <Resource Include="Assets\SnakeBodyDead.png" />
     <Resource Include="Assets\SnakeHead.png" />
