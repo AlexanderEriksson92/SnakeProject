@@ -18,20 +18,20 @@ namespace SnakeProjekt
 	public partial class MainWindow : Window
 	{
 
-		private readonly Dictionary<GridValue, ImageSource> gridValToImage = new()
+		private readonly Dictionary<GridValue, Func<ImageSource>> gridValToImage = new()
 		{
-			{ GridValue.Empty, Images.Empty },
-			{ GridValue.Snake, Images.SnakeBody },
-			{ GridValue.Food, Images.Food }
+			{ GridValue.Empty, Images.GetEmpty },
+			{ GridValue.Snake, Images.GetSnakeBody },
+			{ GridValue.Food, Images.GetFood }
 		};
 		// Håller koll på spelets tillstånd
 		private readonly int rows = 20, cols = 20;
 		private readonly Image[,] GridImages;
 		private GameState gameState;
+		private int CurrentGameSpeed = 100;
 		private bool GameIsRunning = false;
 		private bool isGamePaused = false;
 		private bool isCountDown = false;
-
 
 		private readonly Dictionary<Direction, int> dirToRotation = new()	// Håller koll på vilket håll ormen ska roteras
 		{
@@ -57,10 +57,35 @@ namespace SnakeProjekt
 					await Task.Delay(100);
 					continue;
 				}
-				await Task.Delay(100);
+				await Task.Delay(gameState.GameSpeed);      // Uppdaterar spelet med en delay som är beroende på spelets hastighet
 				gameState.Move();
 				Draw();
 			}
+		}
+		// Settings methods
+		private void SettingsButton_Click(object sender, RoutedEventArgs e)
+		{
+			OpenSettings();
+		}
+		private void OpenSettings()
+		{
+			var settingsWindow = new SettingsWindow();
+			var dialogResult = settingsWindow.ShowDialog();
+			if (dialogResult == true)
+			{
+				ApplySettings(settingsWindow.ColorSelected, settingsWindow.SpeedSelected, settingsWindow.LevelSelected);
+			}
+		}
+		private void ApplySettings(string color, int speed, string level)
+		{
+			Images.SetColor(color);
+			gameState.GameSpeed = ConvertSpeedToInterval(speed);
+			gameState.GameSpeed = CurrentGameSpeed;
+			CreateGrid();
+		}
+		private int ConvertSpeedToInterval(int speed)
+		{
+			return Math.Max(10, 200 - speed * 50);
 		}
 
 		// Key events and button events
@@ -121,6 +146,7 @@ namespace SnakeProjekt
 		private async Task RunGame()
 		{
 			Overlay.Visibility = Visibility.Hidden;
+			
 			await Loop();
 			await GameOver();
 			GameIsRunning = false;
@@ -128,7 +154,7 @@ namespace SnakeProjekt
 		}
 		private async Task StartOrResumegame()
 		{
-			if (!GameIsRunning && !isCountDown)		// Om spelet inte redan körs och inte är påväg att startas så göms overlayen och spelet startas
+			if (!GameIsRunning && !isCountDown)     // Om spelet inte redan körs och inte är påväg att startas så göms overlayen och spelet startas
 			{
 				isCountDown = true;
 				NameInputTextBox.Visibility = Visibility.Collapsed;
@@ -141,9 +167,10 @@ namespace SnakeProjekt
 				isCountDown = false;
 				GameIsRunning = true;
 				gameState = new GameState(rows, cols);
+				gameState.GameSpeed = this.CurrentGameSpeed;
 				await RunGame();
 			}
-			else if (isGamePaused && !isCountDown)		// Om spelet är pausat och inte redan är påväg att startas så startas spelet
+			else if (isGamePaused && !isCountDown)      // Om spelet är pausat och inte redan är påväg att startas så startas spelet
 			{
 				isCountDown = true;
 				await CountDown(3);
@@ -163,10 +190,11 @@ namespace SnakeProjekt
 				}
 				isGamePaused = !isGamePaused;
 				Overlay.Visibility = isGamePaused ? Visibility.Visible : Visibility.Hidden;
+				SettingsButton.Visibility = isGamePaused ? Visibility.Visible : Visibility.Hidden;
 				OverLayText.Text = isGamePaused ? "Game Paused. Press P to resume." : "";
 			}
 		}
-		private async Task CountDown(int seconds)		// Countdown innan spelet startar eller återupptas
+		private async Task CountDown(int seconds)       // Countdown innan spelet startar eller återupptas
 		{
 			for (int i = 3; i > 0; i--)
 			{
@@ -177,7 +205,7 @@ namespace SnakeProjekt
 			OverLayText.Text = "GO";
 			await Task.Delay(200);
 		}
-		private async Task GameOver()				// Startar dödorm animation samt laddar in highscores
+		private async Task GameOver()               // Startar dödorm animation samt laddar in highscores
 		{
 			await DrawSnakeDead();
 			await Task.Delay(1000);
@@ -202,8 +230,8 @@ namespace SnakeProjekt
 			}
 			GameIsRunning = false;
 			isGamePaused = false;
-
 		}
+
 		// Highscore methods
 		private void SaveHighscoreButton(object sender, RoutedEventArgs e)
 		{
@@ -253,8 +281,8 @@ namespace SnakeProjekt
 				{
 					Image image = new Image
 					{
-						Source = Images.Empty,
-						RenderTransformOrigin = new Point(0.5, 0.5)		// Sätter pivot för rotation till mitten av bilden
+						Source = Images.GetEmpty(),
+						RenderTransformOrigin = new Point(0.5, 0.5)     // Sätter pivot för rotation till mitten av bilden
 					};
 					images[r, c] = image;
 					GameGrid.Children.Add(image);
@@ -272,17 +300,17 @@ namespace SnakeProjekt
 		{
 			Position headPos = gameState.HeadPosition();
 			Image image = GridImages[headPos.X, headPos.Y];
-			image.Source = Images.SnakeHead;
+			image.Source = Images.GetSnakeHead();
 			int rotation = dirToRotation[gameState.Dir];
 			image.RenderTransform = new RotateTransform(rotation);
 		}
 		private async Task DrawSnakeDead()
 		{
-			List<Position> positions = new List<Position>(gameState.SnakePositions());	// Byter ut ormens bilder till dödormens bilder
+			List<Position> positions = new List<Position>(gameState.SnakePositions());  // Byter ut ormens bilder till dödormens bilder
 			for (int i = 0; i < positions.Count; i++)
 			{
 				Position pos = positions[i];
-				ImageSource source = i == 0 ? Images.SnakeHeadDead : Images.SnakeBodyDead;
+				ImageSource source = i == 0 ? Images.GetSnakeHeadDead() : Images.GetSnakeBodyDead();
 				GridImages[pos.X, pos.Y].Source = source;
 				await Task.Delay(50);
 			}
@@ -294,7 +322,7 @@ namespace SnakeProjekt
 				for (int c = 0; c < cols; c++)
 				{
 					GridValue gridVal = gameState.grid[r, c];
-					GridImages[r, c].Source = gridValToImage[gridVal];
+					GridImages[r, c].Source = gridValToImage[gridVal](); 
 					GridImages[r, c].RenderTransform = Transform.Identity;
 				}
 			}

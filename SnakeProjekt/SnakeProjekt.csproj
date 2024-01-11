@@ -9,8 +9,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\BlueEmptySpace.png" />
+    <None Remove="Assets\BlueFood.png" />
+    <None Remove="Assets\BlueSnakeBody.png" />
+    <None Remove="Assets\BlueSnakeBodyDead.png" />
+    <None Remove="Assets\BlueSnakeHead.png" />
+    <None Remove="Assets\BlueSnakeHeadDead.png" />
     <None Remove="Assets\EmptySpace.png" />
     <None Remove="Assets\Food.png" />
+    <None Remove="Assets\ReadSnakeHeadDead.png" />
+    <None Remove="Assets\RedEmptySpace.png" />
+    <None Remove="Assets\RedFood.png" />
+    <None Remove="Assets\RedSnakeBody.png" />
+    <None Remove="Assets\RedSnakeBodyDead.png" />
+    <None Remove="Assets\RedSnakeHead.png" />
+    <None Remove="Assets\RedSnakeHeadDead.png" />
     <None Remove="Assets\SF Atarian System Extended Bold.ttf" />
     <None Remove="Assets\sf-atarian-system\SF Atarian System Bold.ttf" />
     <None Remove="Assets\SnakeBody.png" />
@@ -20,13 +33,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\EmptySpace.png" />
-    <Resource Include="Assets\Food.png" />
+    <Resource Include="Assets\BlueEmptySpace.png" />
+    <Resource Include="Assets\BlueFood.png" />
+    <Resource Include="Assets\BlueSnakeBody.png" />
+    <Resource Include="Assets\BlueSnakeBodyDead.png" />
+    <Resource Include="Assets\BlueSnakeHead.png" />
+    <Resource Include="Assets\BlueSnakeHeadDead.png" />
+    <Resource Include="Assets\RedEmptySpace.png" />
+    <Resource Include="Assets\RedFood.png" />
+    <Resource Include="Assets\RedSnakeBody.png" />
+    <Resource Include="Assets\RedSnakeBodyDead.png" />
+    <Resource Include="Assets\RedSnakeHead.png" />
+    <Resource Include="Assets\RedSnakeHeadDead.png" />
     <Resource Include="Assets\SF Atarian System Extended Bold.ttf" />
-    <Resource Include="Assets\SnakeBody.png" />
-    <Resource Include="Assets\SnakeBodyDead.png" />
-    <Resource Include="Assets\SnakeHead.png" />
-    <Resource Include="Assets\SnakeHeadDead.png" />
   </ItemGroup>
 
 </Project>

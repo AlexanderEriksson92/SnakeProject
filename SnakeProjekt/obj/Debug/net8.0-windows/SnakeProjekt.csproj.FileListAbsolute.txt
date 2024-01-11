@@ -20,3 +20,5 @@ C:\Users\Alexa\source\repos\SnakeProjekt\SnakeProjekt\obj\Debug\net8.0-windows\S
 C:\Users\Alexa\source\repos\SnakeProjekt\SnakeProjekt\obj\Debug\net8.0-windows\SnakeProjekt.genruntimeconfig.cache
 C:\Users\Alexa\source\repos\SnakeProjekt\SnakeProjekt\obj\Debug\net8.0-windows\ref\SnakeProjekt.dll
 C:\Users\Alexa\source\repos\SnakeProjekt\SnakeProjekt\obj\Debug\net8.0-windows\App.baml
+C:\Users\Alexa\source\repos\SnakeProjekt\SnakeProjekt\obj\Debug\net8.0-windows\SettingsWindow.baml
+C:\Users\Alexa\source\repos\SnakeProjekt\SnakeProjekt\obj\Debug\net8.0-windows\SettingsWindow.g.cs

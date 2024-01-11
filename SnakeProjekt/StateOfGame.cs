@@ -3,6 +3,7 @@
 using System.Runtime.CompilerServices;
 using System.Windows.Controls.Primitives;
 using System.Diagnostics;
+using System.Security.Cryptography.X509Certificates;
 
 namespace SnakeProjekt
 {
@@ -17,7 +18,7 @@ namespace SnakeProjekt
 			public Direction Dir { get; private set; }
 			public int Score { get; set; }
 			public int GameOver { get; private set; }
-
+			public int GameSpeed { get; set; } = 100;
 
 			private readonly LinkedList<Position> snakePositions = new LinkedList<Position>();
 			private readonly LinkedList<Direction> dirChanges = new LinkedList<Direction>();
@@ -32,6 +33,7 @@ namespace SnakeProjekt
 				GameOver = 0;
 				AddSnake();
 				Food();
+				GameSpeed = 100;
 			}
 
 			private void AddSnake()

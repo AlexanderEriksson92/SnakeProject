@@ -1,0 +1,21 @@
+﻿<Window x:Class="SnakeProjekt.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Settings" Height="300" Width="300">
+    <StackPanel>
+        <Label>Change Color theme:</Label>
+        <ComboBox x:Name="ColorComboBox">
+            <ComboBoxItem Content="Blue" IsSelected="True"/>
+            <ComboBoxItem Content="Red"/>
+        </ComboBox>
+        <Label>Change Game Speed:</Label>
+        <Slider x:Name="SpeedSlider" Minimum="1" Maximum="3"/>
+        <Label>Change Level:</Label>
+        <ComboBox x:Name="LevelComboBox">
+            <ComboBoxItem Content="Easy" IsSelected="True"/>
+            <ComboBoxItem Content="Medium"/>
+            <ComboBoxItem Content="Snake on a Plane"/>
+        </ComboBox>
+        <Button x:Name="ApplyButton" Content="Apply" Click="ApplyButton_Click"/>
+    </StackPanel>
+</Window>
