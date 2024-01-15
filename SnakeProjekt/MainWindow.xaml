@@ -97,14 +97,16 @@
           Width="300"
           Padding="10"/>
                 <Button x:Name="HighscoreButton"
-         HorizontalAlignment="Center"
-         VerticalAlignment="Center"
-         FontSize="30"
-         Padding="20 10"
-         Margin="20"
-         Content="Submit"
-         Visibility="Collapsed"
-         Click="SaveHighscoreButton"/>
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="20"
+                        Padding="20 10"
+                        Margin="10"
+                        Content="Submit"
+                        Width="174" Height="38"
+                        Visibility="Collapsed"
+                        Click="SaveHighscoreButton"
+                        />
                 <Button x:Name="StartButton"
                         FontSize="30"
                         Content="Start"
@@ -115,6 +117,7 @@
                         HorizontalAlignment="Center"
                         Content="Settings"
                         Margin="10"
+                        FontSize="20"
                         Visibility="Visible"
                         Click="SettingsButton_Click" Width="174" Height="38"/>
             </StackPanel>
