@@ -51,7 +51,7 @@
         <Border x:Name="Overlay" Grid.Column="0"
                 Background="{StaticResource BackgroundColor}"
                 Visibility="Visible" Margin="0,40,0,0" Grid.RowSpan="2">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="504" Width="930">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="522" Width="930">
                 <TextBlock 
                            x:Name="HighscoreText"
                            Text="Highscores"
@@ -60,7 +60,7 @@
                            Foreground="{StaticResource HighScoreText}"
                            FontSize="30"
                            Margin="10"
-                           Visibility="Collapsed"/>
+                           Visibility="Hidden"/>
                 <ListBox x:Name="HighscoreList"
                          HorizontalAlignment="Center"
                          FontSize="14"
@@ -110,13 +110,13 @@
                         Content="Start"
                         Padding="20 10"
                         Visibility="Visible"
-                        Click="StartButton_Click" Width="360"/>
+                        Click="StartButton_Click" Width="314"/>
                 <Button x:Name="SettingsButton"
                         HorizontalAlignment="Center"
                         Content="Settings"
                         Margin="10"
                         Visibility="Visible"
-                        Click="SettingsButton_Click" Width="238" Height="43"/>
+                        Click="SettingsButton_Click" Width="174" Height="38"/>
             </StackPanel>
         </Border>
     </Grid>
