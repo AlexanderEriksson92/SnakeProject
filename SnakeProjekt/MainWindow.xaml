@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:SnakeProjekt"
         mc:Ignorable="d"
         Title="SnakeWindow" Height="650" Width="950" MinHeight="350" MinWidth="500"
@@ -47,10 +48,9 @@
                          RenderOptions.BitmapScalingMode="HighQuality">
             </UniformGrid>
         </Border>
-        <Border x:Name="Overlay"
-                Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+        <Border x:Name="Overlay" Grid.Column="0"
                 Background="{StaticResource BackgroundColor}"
-                Visibility="Visible">
+                Visibility="Visible" Margin="0,40,0,0" Grid.RowSpan="2">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="504" Width="930">
                 <TextBlock 
                            x:Name="HighscoreText"
@@ -66,7 +66,7 @@
                          FontSize="14"
                          MinWidth="300"
                          MinHeight="300"
-                         Visibility="Collapsed"
+                         Visibility="Hidden"
                             FontFamily="{StaticResource AtariFont}"
                             Background="{StaticResource HighScoreTable}"
                             Foreground="{StaticResource HighScoreText}" Height="172"
@@ -88,6 +88,23 @@
                           FontSize="30"
                           Margin="20"
                           Text="Press space to start"/>
+                <xctk:WatermarkTextBox x:Name="NameInputTextBox"
+          HorizontalAlignment="Center"
+          VerticalAlignment="Center"
+          Visibility="Collapsed"
+          TextAlignment="Center"
+          Watermark="submit name..."
+          Width="300"
+          Padding="10"/>
+                <Button x:Name="HighscoreButton"
+         HorizontalAlignment="Center"
+         VerticalAlignment="Center"
+         FontSize="30"
+         Padding="20 10"
+         Margin="20"
+         Content="Submit"
+         Visibility="Collapsed"
+         Click="SaveHighscoreButton"/>
                 <Button x:Name="StartButton"
                         FontSize="30"
                         Content="Start"
@@ -100,23 +117,6 @@
                         Margin="10"
                         Visibility="Visible"
                         Click="SettingsButton_Click" Width="238" Height="43"/>
-                <TextBox x:Name="NameInputTextBox"
-                         HorizontalAlignment="Center"
-                         VerticalAlignment="Center"
-                         Visibility="Collapsed"
-                         TextAlignment="Center"
-                         Width="300"
-                         Padding="10"/>
-
-                <Button x:Name="HighscoreButton"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        FontSize="30"
-                        Padding="20 10"
-                        Margin="20"
-                        Content="Submit"
-                        Visibility="Collapsed"
-                        Click="SaveHighscoreButton"/>
             </StackPanel>
         </Border>
     </Grid>

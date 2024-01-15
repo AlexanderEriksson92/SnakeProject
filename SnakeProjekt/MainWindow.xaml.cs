@@ -32,6 +32,7 @@ namespace SnakeProjekt
 		private bool GameIsRunning = false;
 		private bool isGamePaused = false;
 		private bool isCountDown = false;
+		public string CurrentColor { get; private set; } = "Blue";
 
 		private readonly Dictionary<Direction, int> dirToRotation = new()	// Håller koll på vilket håll ormen ska roteras
 		{
@@ -62,6 +63,7 @@ namespace SnakeProjekt
 				Draw();
 			}
 		}
+		
 		// Settings methods
 		private void SettingsButton_Click(object sender, RoutedEventArgs e)
 		{
@@ -69,23 +71,34 @@ namespace SnakeProjekt
 		}
 		private void OpenSettings()
 		{
-			var settingsWindow = new SettingsWindow();
+			var settingsWindow = new SettingsWindow(CurrentColor);
 			var dialogResult = settingsWindow.ShowDialog();
 			if (dialogResult == true)
 			{
+				CurrentColor = settingsWindow.ColorSelected;
 				ApplySettings(settingsWindow.ColorSelected, settingsWindow.SpeedSelected, settingsWindow.LevelSelected);
 			}
 		}
 		private void ApplySettings(string color, int speed, string level)
 		{
 			Images.SetColor(color);
-			gameState.GameSpeed = ConvertSpeedToInterval(speed);
-			gameState.GameSpeed = CurrentGameSpeed;
+			CurrentGameSpeed = ConvertSpeedToInterval(speed); 
+			gameState.GameSpeed = CurrentGameSpeed; 
 			CreateGrid();
 		}
 		private int ConvertSpeedToInterval(int speed)
 		{
-			return Math.Max(10, 200 - speed * 50);
+			switch (speed)
+			{
+				case 200:   
+					return 50;  // Högre fördröjning
+				case 100:  
+					return 100;  // Medelfördröjning
+				case 50:  
+					return 200;  // Lägre fördröjning
+				default:
+					return 100;  // Standardvärde om inget annat matchar
+			}
 		}
 
 		// Key events and button events
@@ -146,7 +159,6 @@ namespace SnakeProjekt
 		private async Task RunGame()
 		{
 			Overlay.Visibility = Visibility.Hidden;
-			
 			await Loop();
 			await GameOver();
 			GameIsRunning = false;
@@ -163,8 +175,9 @@ namespace SnakeProjekt
 				HighscoreList.Visibility = Visibility.Collapsed;
 				HighscoreText.Visibility = Visibility.Collapsed;
 				Overlay.Visibility = Visibility.Hidden;
-				await CountDown(3);
-				isCountDown = false;
+				SettingsButton.Visibility = Visibility.Hidden;
+				await CountDown(3);								// Countdown innan spelet startar
+				isCountDown = false;							// Sätter isCountDown till false så att spelet inte kan startas igen
 				GameIsRunning = true;
 				gameState = new GameState(rows, cols);
 				gameState.GameSpeed = this.CurrentGameSpeed;
@@ -199,6 +212,7 @@ namespace SnakeProjekt
 			for (int i = 3; i > 0; i--)
 			{
 				Overlay.Visibility = Visibility.Visible;
+				SettingsButton.Visibility = Visibility.Hidden;
 				OverLayText.Text = "Get ready in: " + i.ToString();
 				await Task.Delay(1000);
 			}
@@ -211,7 +225,7 @@ namespace SnakeProjekt
 			await Task.Delay(1000);
 			Overlay.Visibility = Visibility.Visible;
 			StartButton.Visibility = Visibility.Visible;
-
+			SettingsButton.Visibility = Visibility.Visible;
 			Players players = new Players();
 			var highscores = players.LoadPlayersScore();
 			// Kontrollerar om spelaren har en highscore som är högre än den lägsta highscoren på listan
@@ -241,6 +255,7 @@ namespace SnakeProjekt
 				SavePlayerScore(playerName, gameState.Score);
 				NameInputTextBox.Visibility = Visibility.Collapsed;
 				HighscoreButton.Visibility = Visibility.Collapsed;
+				OverLayText.Text = "Score submitted. Press space to start.";
 				DisplayHighscores();
 			}
 			else

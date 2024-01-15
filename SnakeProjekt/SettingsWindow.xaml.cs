@@ -21,32 +21,38 @@ namespace SnakeProjekt
 		public string ColorSelected { get; private set; }
 		public int SpeedSelected { get; private set; }
 		public string LevelSelected { get; private set; }
-		public SettingsWindow()
+
+		public string CurrentSelectedColor { get; set; }
+		public SettingsWindow(string currentColor)
 		{
 			InitializeComponent();
+			
+			
+			if (CurrentSelectedColor == "Blue")
+			{
+				ColorComboBox.SelectedIndex = 0;
+			}
+			else if (CurrentSelectedColor == "Red")
+			{
+				ColorComboBox.SelectedIndex = 1;
+			}
 		}
 		private void ApplyButton_Click(object sender, RoutedEventArgs e)
 		{
-			ColorSelected = (ColorComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
-			SpeedSelected = ConvertSliderToInt((int)SpeedSlider.Value);
-			LevelSelected = (LevelComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
+			var selectedColor = ColorComboBox.SelectedItem as ComboBoxItem;
+			ColorSelected = selectedColor.Content.ToString();
+
+			if (SpeedSlow.IsChecked == true)
+				SpeedSelected = 50;
+			else if (SpeedNormal.IsChecked == true)
+				SpeedSelected = 100;
+			else if (SpeedFast.IsChecked == true)
+				SpeedSelected = 200;
+			else
+				SpeedSelected = 100;
 
 			DialogResult = true;
 			Close();
-		}
-		private int ConvertSliderToInt(int sliderValue)
-		{
-			switch (sliderValue)
-			{
-				case 1:
-					return 50;  // Långsam
-				case 2:
-					return 100; // Normal
-				case 3:
-					return 200; // Snabb
-				default:
-					return 100; // Standard
-			}
 		}
 	}
 }

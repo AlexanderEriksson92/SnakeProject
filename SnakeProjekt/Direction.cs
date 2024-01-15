@@ -23,7 +23,7 @@ namespace SnakeProjekt
 			return new Direction(-X, -Y);
 		}
 
-		public override bool Equals(object obj)
+		public override bool Equals(object obj)		// Equals och GetHashCode används för att jämföra två objekt
 		{
 			return obj is Direction direction &&
 			X == direction.X &&

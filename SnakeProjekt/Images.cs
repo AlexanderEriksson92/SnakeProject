@@ -14,7 +14,6 @@ namespace SnakeProjekt
 		public static ImageSource GetFood() => LoadImage($"{currentColor}Food.png");
 		public static ImageSource GetEmpty() => LoadImage($"{currentColor}EmptySpace.png");
 
-
 		public static void SetColor(string color)
 		{
 			currentColor = color;

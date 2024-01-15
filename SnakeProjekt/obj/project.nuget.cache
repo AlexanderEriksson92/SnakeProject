@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "G2bb8bZtX7ggjRCHoDsbSr2yV0U/DmURDrcdELFM0Xd40q6cHRWNysBk+/SSzmrIMsorWmEA4jAKTelmTc0B0Q==",
+  "dgSpecHash": "eSBqOVFfOv7HWQo/2d7Yn9HfpE4iQEOKS4Dl4im1rCnuCb5Vp+HVqLMuPJZso08GhFlPt13LM/DyBFhDhEPx2g==",
   "success": true,
   "projectFilePath": "C:\\Users\\Alexa\\source\\repos\\SnakeProjekt\\SnakeProjekt\\SnakeProjekt.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Alexa\\.nuget\\packages\\extended.wpf.toolkit\\4.5.1\\extended.wpf.toolkit.4.5.1.nupkg.sha512"
+  ],
   "logs": []
 }

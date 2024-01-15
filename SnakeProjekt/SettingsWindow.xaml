@@ -4,18 +4,21 @@
         Title="Settings" Height="300" Width="300">
     <StackPanel>
         <Label>Change Color theme:</Label>
-        <ComboBox x:Name="ColorComboBox">
+        <ComboBox x:Name="ColorComboBox"
+                  Margin="10">
             <ComboBoxItem Content="Blue" IsSelected="True"/>
             <ComboBoxItem Content="Red"/>
         </ComboBox>
         <Label>Change Game Speed:</Label>
-        <Slider x:Name="SpeedSlider" Minimum="1" Maximum="3"/>
-        <Label>Change Level:</Label>
-        <ComboBox x:Name="LevelComboBox">
-            <ComboBoxItem Content="Easy" IsSelected="True"/>
-            <ComboBoxItem Content="Medium"/>
-            <ComboBoxItem Content="Snake on a Plane"/>
-        </ComboBox>
-        <Button x:Name="ApplyButton" Content="Apply" Click="ApplyButton_Click"/>
+        <StackPanel
+            Margin="10">
+            <RadioButton x:Name="SpeedSlow" Content="Slow" GroupName="Speed"/>
+            <RadioButton x:Name="SpeedNormal" Content="Normal" GroupName="Speed" IsChecked="True"/>
+            <RadioButton x:Name="SpeedFast" Content="Fast" GroupName="Speed" />
+        </StackPanel>
+        <Button x:Name="ApplyButton" 
+                Margin="10"
+                Content="Apply" 
+                Click="ApplyButton_Click"/>
     </StackPanel>
 </Window>
