@@ -1,5 +1,5 @@
 # 🐍 Snake Game
-<img width="941" height="649" alt="SnakeScreen" src="https://github.com/user-attachments/assets/7c4d2579-b207-4316-9efd-6c437f1f2505" />
+<img src="https://github.com/user-attachments/assets/7c4d2579-b207-4316-9efd-6c437f1f2505" width="500" alt="SnakeScreen" />
 
 En klassisk implementering av det tidlösa spelet Snake, utvecklat i **C#** med **.NET**. Detta projekt fungerar som en utmärkt demonstration av grundläggande **spelutvecklingskoncept**, **objektorienterad programmering (OOP)** och **konsolapplikationsutveckling** inom .NET-ekosystemet. Det är ett roligt sätt att utforska grunderna i spelutveckling med C#.
 
